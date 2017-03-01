@@ -13,7 +13,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * --topic news-topic --bootstrap.servers localhost:9092 --zookeeper.connect localhost:2181 --group.id myGroup
+ * --topic news-topic --bootstrap.servers localhost:9092 --zookeeper.connect
+ * localhost:2181 --group.id myGroup
+ * 
  * @author Omar Rampado
  *
  */
@@ -33,10 +35,11 @@ public class FlinkNewsAnalyzer {
 			private static final long serialVersionUID = -1;
 
 			private ObjectMapper mapper = new ObjectMapper();
-			
+
 			@Override
 			public String map(String value) throws Exception {
-				Map<String, String> map = mapper.readValue(value, new TypeReference<Map<String, Object>>(){});
+				Map<String, String> map = mapper.readValue(value, new TypeReference<Map<String, Object>>() {
+				});
 				return "News title: " + map.get("title");
 			}
 		}).print();

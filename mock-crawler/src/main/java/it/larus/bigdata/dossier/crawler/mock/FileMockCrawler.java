@@ -30,6 +30,7 @@ public class FileMockCrawler {
 		Files.list(Paths.get(directory)).forEach(p -> {
 			String content;
 			try {
+				System.out.println("Sending "+p);
 				content = new String(Files.readAllBytes(p));
 				producer.send(new ProducerRecord<String, String>(topic, content));
 			} catch (IOException e) {
@@ -38,7 +39,9 @@ public class FileMockCrawler {
 
 		});
 
+		System.out.println("Flushing...");
 		producer.flush();
+		System.out.println("Closing...");
 		producer.close();
 	}
 
