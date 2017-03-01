@@ -26,6 +26,13 @@ docker-compose up
 ```
 It enables to use kafka on port 9092 with zookeeper on 2181. Inside Kafka a topic is created with name "news-topic".
 
+It also creates a neo4j instance with http (7474) and BOLT (7687) protocols enabled.
+```
+username: neo4j
+password: admin
+data: $HOME/dossier/neo4j/
+```
+
 ## flink-analyzer
 It's a Kafka consumer, write in Java (only a printing feature) and in Scala. 
 The goal of project is to set up a Neo4j database of news, linking them with people or compagny cited in the news.
